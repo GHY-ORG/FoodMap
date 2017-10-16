@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>美食地图后台管理</title>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+</head>
+<style type="text/css">
+table {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+    margin-top: 80px;
+    width:100%;
+}
+table th {
+    background-color:#c3dde0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+table tr {
+    background-color:#d4e3e5;
+}
+table td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+.admin{
+    position:fixed;
+    right: 20px;
+    top: 20px;
+}
+.btn{
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 微软雅黑;
+    background-color: #e2e2e2;
+}
+</style>
+<body>
+<div class="admin">
+    <input id="removebtn" class="btn" type="button" value="删除">  
+    <input id="addbtn" class="btn" type="button" value="新建">  
+</div>
+    <table>
+        <tr>
+            <th><input id="checkall" type="checkbox" /></th>  
+            <th>ID</th>
+            <th>名称</th>
+            <th>街区</th>
+            <th>类型</th>
+            <th>人均下限</th>
+            <th>人均上限</th>
+            <th>联系方式</th>
+            <th>地址</th>
+            <th>简介</th>
+        </tr>
+    </table>
+<script type="text/javascript">
+$(function () {
+/* 	var store = {
+			
+	        "name": "初客牛排",
+	        "district": 1,
+	        "type": 2,
+	        "per_floor": 30,
+	        "per_ceiling": 40,
+	        "contact": "",
+	        "address": "大鸡排那条街一直走下去，第五个路口左边",
+	        "intro": null
+	}
+	$.ajax({
+	      type:"PUT",
+	      url:"stores/2",
+	      data:store,
+	      dataType:"json",
+	      success:function(result) {
+	          console.log(result);
+	      },
+	      error:function(result) {
+	          //......
+	      }
+	    }); */
+
+    $.ajax({//get all the item info
+        type:"GET",
+        url:"stores",
+        success:function(data){
+        	var i;
+        	var stores = data.stores;
+        	for (i = 0; i < stores.length; ++i) {
+        		$("table").append($('<tr/>')  
+        				.append($('<td/>').html("<input id='check"+i+"' type='checkbox' />"))
+                        .append($('<td/>').html(stores[i].id))
+                        .append($('<td/>').html(stores[i].name))
+                        .append($('<td/>').html(stores[i].district))
+                        .append($('<td/>').html(stores[i].type))
+                        .append($('<td/>').html(stores[i].per_floor))
+                        .append($('<td/>').html(stores[i].per_ceiling))
+                        .append($('<td/>').html(stores[i].contact))
+                        .append($('<td/>').html(stores[i].address))
+                        .append($('<td/>').html(stores[i].intro))
+                  )
+        	}
+    }, 
+       error:function(jqXHR,textStatus,errorThrown){
+        alert("error");
+    }
+    });
+
+$('#checkall').on('click', function () {//check all items or cancel all checked
+    if ($("table #checkall").is(':checked')) {
+        $("table input[type=checkbox]").each(function () {
+            $(this).prop("checked", true);
+        });
+
+    } else {
+        $("table input[type=checkbox]").each(function () {
+            $(this).prop("checked", false);
+        });
+    }
+});
+});
+</script>
+</body>
+</html>

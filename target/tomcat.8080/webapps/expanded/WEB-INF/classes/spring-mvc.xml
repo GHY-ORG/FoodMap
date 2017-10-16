@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd   
+       http://www.springframework.org/schema/context   
+       http://www.springframework.org/schema/context/spring-context.xsd   
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx.xsd  
+          http://www.springframework.org/schema/mvc  
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
+      
+     <!-- 基本包扫描 -->  
+   <context:component-scan base-package="ghy.foodmap" />   
+      
+    <!-- 注册HandlerMapper、HandlerAdapter两个映射类,负责将请求映射到类和方法中 -->  
+    <mvc:annotation-driven />  
+  
+    <!-- 访问静态资源,如js, css文件等 -->  
+    <mvc:default-servlet-handler />  
+     <mvc:resources mapping="/**" location="/WEB-INF/view/">
+        <mvc:cache-control max-age="3600" cache-public="true"/>
+    </mvc:resources>
+      
+    <!-- 开启MVC注解扫描 -->
+    <bean
+        class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <bean
+                    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/view/" />
+                    <property name="suffix" value="" />
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+                </bean>
+            </list>
+        </property>
+        
+        <!-- 用于将对象转换为 JSON -->
+        <property name="defaultViews">
+            <list>
+                <bean
+                    class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+            </list>
+        </property>
+    </bean>
+    
+</beans>  

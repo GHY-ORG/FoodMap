@@ -1,0 +1,142 @@
+*
+{
+	padding:0px;
+	margin:0px;
+}
+
+.header
+{
+	background-color:#e86423;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	
+	text-align: center;
+}
+.title
+{
+	z-index: 1;
+	color:black;
+	position:relative;
+}
+.logo
+{
+	z-index: 1;
+	position: relative;
+
+}
+@-webkit-keyframes play {
+	0% {
+		-webkit-transform: scale(1,1);
+		-moz-transform: scale(1,1);
+		-o-transform: scale(1,1);
+		-ms-transform: scale(1,1);
+	}
+	50% {
+		-webkit-transform: scale(1.2,1.2);
+		-moz-transform: scale(1.2,1.2);
+		-o-transform: scale(1.2,1.2);
+		-ms-transform: scale(1.2,1.2);
+	}
+	100% {
+		-webkit-transform: scale(1,1);
+		-moz-transform: scale(1,1);
+		-o-transform: scale(1,1);
+		-ms-transform: scale(1,1);
+	}
+}
+
+.header a img {
+	-webkit-animation:play 1s linear infinite;
+     -ms-animation:play 1s linear infinite;
+     -moz-animation:play 1s linear infinite;
+      -o-animation:play 1s linear infinite;
+}
+.header ul li
+{
+	display: inline-block;
+	vertical-align:middle;
+	padding: 0 1.8% ;
+}
+.title a 
+{
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 1.4em;
+	display: block;
+	text-align: center;
+	padding:auto  60%;
+}
+.title a:hover
+{
+	color: rgb(25,78,144);
+}
+.logo a 
+{
+	display: inline-block;
+	padding:0 3%;
+}
+.kong{
+	height:2%;
+}
+.select1{
+	font-size:130%;
+	font-color:rgb(34, 154, 181);
+	 text-align: center;
+    background-color:rgb(239, 239, 239);
+    width:80%; 
+    height:12%;
+    line-height:15%;
+    margin:2%;
+    border-radius:9px;
+-webkit-border-radius:9px;
+-moz-border-radius :9px;
+margin-left: 10%;
+    margin-right: 10%;
+    font-family:'微软雅黑';
+}
+.select2{
+	font-size:130%;
+	font-color:rgb(34, 154, 181);
+	 text-align: center;
+    background-color:rgb(239, 239, 239);
+    width:80%; 
+    height:12%;
+    line-height:15%;
+    margin:2%;
+    border-radius:9px;
+-webkit-border-radius:9px;
+-moz-border-radius :9px;
+    margin-right: 10%;
+    margin-left: 10%;
+    font-family:'微软雅黑';
+}
+#random{
+	dispaly:inline-block;
+	background-color:rgb(239,239,239);
+	padding:0,2%,0,2%;
+	font-size:104%;
+    text-decoration:npne;
+    color:#4B4B4B;
+    height:10%;
+    line-height:95%;
+    border:0.5% solid #ccc;
+    font-family:'微软雅黑';
+    width:60%;
+    text-align: center;
+    
+    margin:2%;
+    margin-left: 20%;
+}
+.bottom{
+    background-color:rgb(239,239,239);
+    width:60%;
+    margin-left:20%;
+    margin-right:20%;
+    border-radius:15px;
+-webkit-border-radius:15px;
+-moz-border-radius :15px;
+}
+p{
+	margin-left:2%;
+}

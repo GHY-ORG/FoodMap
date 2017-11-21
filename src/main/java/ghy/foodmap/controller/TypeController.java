@@ -67,10 +67,11 @@ public class TypeController {
         return mp;
     }
     
-    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> update(@PathVariable int id,@ModelAttribute  Type type)throws Exception{
+    public Map<String, Object> update(@ModelAttribute  Type type)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
+        int id = type.getId();
         Type current = service.FindById(id, 1);
         if(current == null){
             throw new Exception("District with id "+id+" not found");
@@ -81,7 +82,7 @@ public class TypeController {
         return mp;
     }
     
-    @RequestMapping(value="",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
     public Map<String, Object> add(@ModelAttribute  Type type)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();

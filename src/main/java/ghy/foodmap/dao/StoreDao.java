@@ -32,7 +32,7 @@ public interface StoreDao extends JpaRepository<Store, Serializable>{
     @Query("select s from Store  s where s.district = ?1 and s.type = ?2 and s.status = ?3")
     List<Store> findByDistrictAndType(int district,int type,int status);
     
-    List<Store> findByStatus(int status);
+    List<Store> findByStatus(Integer status);
     
     @Query("select s from Store s")
     List<Store> findAll();

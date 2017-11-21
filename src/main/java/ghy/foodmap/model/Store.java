@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table
 public class Store {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "Id")
     private int id;
     @Column(name = "Name")
@@ -30,8 +30,8 @@ public class Store {
     private String address;
     @Column(name = "Intro")
     private String intro;
-    @Column(name = "Status")
-    private int status;
+    @Column(name = "Status",nullable=false,columnDefinition="int default 1")
+    private int status = 1;
     
     public int getId() {
         return id;

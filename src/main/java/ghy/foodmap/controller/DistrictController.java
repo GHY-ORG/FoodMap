@@ -67,10 +67,11 @@ public class DistrictController {
         return mp;
     }
     
-    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> update(@PathVariable int id,@ModelAttribute  District district)throws Exception{
+    public Map<String, Object> update(@ModelAttribute  District district)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
+        int id = district.getId();
         District current = service.FindById(id, 1);
         if(current == null){
             throw new Exception("District with id "+id+" not found");

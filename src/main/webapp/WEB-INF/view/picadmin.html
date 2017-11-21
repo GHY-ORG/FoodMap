@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<title> 图片上传</title>
+</head>
+<style type="text/css">
+table {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+    margin-top: 80px;
+    width:100%;
+}
+table th {
+    background-color:#c3dde0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+table tr {
+    background-color:#d4e3e5;
+}
+table td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+img{
+    width:200px;
+}
+</style>
+
+<body>
+<img alt="" src="">
+<form id="picUpload" action="pics" method="post" enctype="multipart/form-data">
+    <input type="text" name="storeId" />
+    <input type="file" accept="image/png,image/gif,image/jpg" name="pic" />
+    <input type="submit" id="submitPic"/>
+</form>
+<table>
+        <tr>
+            <th><input id="checkall" type="checkbox" /></th>  
+            <th>ID</th>
+            <th>storeId</th>
+            <th>pic</th>
+            <th>status</th>
+        </tr>
+    </table>
+<script type="text/javascript">
+$.ajax({//get all the item info
+    type:"GET",
+    url:"pics",
+    success:function(data){
+        var i;
+        var pics = data.pics;
+        for (i = 0; i < pics.length; ++i) {
+            $("table").append($('<tr/>')  
+                    .append($('<td/>').html("<input id='check"+i+"' type='checkbox' />"))
+                    .append($('<td/>').html(pics[i].id))
+                    .append($('<td/>').html(pics[i].storeId))
+                    .append($('<td/>').html(pics[i].pic))
+                    .append($('<td/>').html(pics[i].status))
+              )
+        }
+}, 
+   error:function(jqXHR,textStatus,errorThrown){
+    alert("error");
+}
+});
+$.get("pics/downLoadFile/7c1ed21b0ef41bd51cdcf94351da81cb38db3dfd/jpg",function(data){
+    $("img").attr("src",data);
+});
+</script>
+</body>
+</html>

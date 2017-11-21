@@ -8,18 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="pics")
+@Table(name="pic")
 public class Picture {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private int id;
     @Column(name = "StoreId")
     private int storeId;
     @Column(name = "Pic")
     private String pic;
-    @Column(name = "Status")
-    private int status;
+    @Column(name = "Status",nullable=false,columnDefinition="INT default 1")
+    private int status = 1;
     public int getId() {
         return id;
     }

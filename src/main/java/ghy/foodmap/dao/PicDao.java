@@ -15,6 +15,13 @@ public interface PicDao extends JpaRepository<Picture, Serializable> {
     Picture findById(int id);
     @Query("select p from Picture  p where p.id = ?1 and p.status = ?2") 
     Picture findById(int id, int status);
+    @Query("select p from Picture  p where p.storeId = ?1") 
+    List<Picture> findByStore(int storeId);
     @Query("select p from Picture  p where p.storeId = ?1 and p.status = ?2") 
     List<Picture> findByStore(int storeId, int status);
+    
+    List<Picture> findByStatus(int status);
+    
+    @Query("select p from Picture  p where p.pic = ?1") 
+    List<Picture> findByPic(String name);
 }

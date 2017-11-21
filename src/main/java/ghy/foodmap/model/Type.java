@@ -11,15 +11,15 @@ import javax.persistence.Table;
 @Table
 public class Type {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private int id;
     @Column(name = "Name")
     private String name;
     @Column(name = "Type_level")
     private int type_level;
-    @Column(name = "Status")
-    private int status;
+    @Column(name = "Status",nullable=false,columnDefinition="int default 1")
+    private int status = 1;
     public int getId() {
         return id;
     }

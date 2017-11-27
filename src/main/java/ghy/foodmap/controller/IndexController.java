@@ -1,12 +1,19 @@
 package ghy.foodmap.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,5 +95,21 @@ public class IndexController {
         }
         return mp;
     }
+    
+    @RequestMapping("/pic/{fileName}/{fileSuffix}")
+    @ResponseBody
+    public String downloadPic(@PathVariable("fileName") String fileName, @PathVariable String fileSuffix, HttpServletRequest request, HttpServletResponse response) throws Exception {  
+        byte[] byData = new byte[]{};
+        try {
+            String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
+            System.out.println(fileName);
+            byData = FileUtils.readFileToByteArray(new File(realPath,fileName+"."+fileSuffix));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        String imgBase64Data = "data:image/jpg;base64,"+Base64Utils.encodeToString(byData);
+        return imgBase64Data;
+    } 
     
 }

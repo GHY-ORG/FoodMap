@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import ghy.foodmap.model.Picture;
+import ghy.foodmap.model.Store;
 
 @Repository
 public interface PicDao extends JpaRepository<Picture, Serializable> {
@@ -24,4 +25,8 @@ public interface PicDao extends JpaRepository<Picture, Serializable> {
     
     @Query("select p from Picture  p where p.pic = ?1") 
     List<Picture> findByPic(String name);
+    
+    List<Picture> findAll();
+    @Query("select p from Picture p where p.status =?1")
+    List<Picture> findAll(int status);
 }

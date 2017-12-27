@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import ghy.foodmap.model.Store;
 import ghy.foodmap.model.Type;
 
 
@@ -18,4 +19,8 @@ public interface TypeDao extends JpaRepository<Type, Serializable> {
     Type findById(int id, int status);
     Type findByName(String Name);
     List<Type> findByStatus(int status);
+    
+    List<Type> findAll();
+    @Query("select t from Type t where t.status =?1")
+    List<Type> findAll(int status);
 }

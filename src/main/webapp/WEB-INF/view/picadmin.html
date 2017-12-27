@@ -39,9 +39,9 @@ img{
 
 <body>
 <img alt="" src="">
-<form id="picUpload" action="pics" method="post" enctype="multipart/form-data">
+<form id="picUpload" action="pics/uploadPic" method="post" enctype="multipart/form-data">
     <input type="text" name="storeId" />
-    <input type="file" accept="image/png,image/gif,image/jpg" name="pic" />
+    <input type="file" accept="image/png,image/gif,image/jpg" name="picFile" />
     <input type="submit" id="submitPic"/>
 </form>
 <table>
@@ -74,7 +74,7 @@ $.ajax({//get all the item info
     alert("error");
 }
 });
-$.get("pics/downLoadFile/7c1ed21b0ef41bd51cdcf94351da81cb38db3dfd/jpg",function(data){
+$.get("pics/downLoadPic/0b55b319ebc4b745653055a1cffc1e178b8215e4/jpg",function(data){
     $("img").attr("src",data);
 });
 </script>

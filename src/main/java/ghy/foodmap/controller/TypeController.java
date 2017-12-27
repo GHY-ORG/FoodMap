@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +31,7 @@ public class TypeController {
     public Map<String, Object> index()throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         List<Type> types = new ArrayList<Type>();
-        types  = service.getAll();
+        types  = service.getAll(null);
         if(types!= null){
             mp.put("types",types);
         }else{
@@ -58,7 +59,7 @@ public class TypeController {
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
     public Map<String, Object> delete(@PathVariable int id)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
-        Type type = service.FindById(id, 1);
+        Type type = service.FindById(id, null);
         if(type == null){
             throw new Exception("Type with id "+id+" not found");
         }
@@ -69,25 +70,25 @@ public class TypeController {
     
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> update(@ModelAttribute  Type type)throws Exception{
+    public Map<String, Object> update(@RequestBody  Type type)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         int id = type.getId();
-        Type current = service.FindById(id, 1);
+        Type current = service.FindById(id, null);
         if(current == null){
             throw new Exception("District with id "+id+" not found");
         }
         type.setId(id);
         service.update(type);
-        mp.put("stores",type);
+        mp.put("types",type);
         return mp;
     }
     
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> add(@ModelAttribute  Type type)throws Exception{
+    public Map<String, Object> add(@RequestBody  Type type)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         service.add(type);
-        mp.put("stores",type);
+        mp.put("types",type);
         return mp;
     }
 }

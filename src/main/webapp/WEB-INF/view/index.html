@@ -24,7 +24,7 @@ $(function () {
     });*/
     
     $.ajax({
-        type:"POST",
+        type:"GET",
         url:"district/1",
         success:function(data){
             var disList = $("#District");
@@ -39,7 +39,7 @@ $(function () {
     });
     
     $.ajax({
-        type:"POST",
+        type:"GET",
         url:"type/1",
         success:function(data){
             var typeList = $("#Type");

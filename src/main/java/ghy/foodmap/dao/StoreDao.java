@@ -36,4 +36,6 @@ public interface StoreDao extends JpaRepository<Store, Serializable>{
     
     @Query("select s from Store s")
     List<Store> findAll();
+    @Query("select s from Store s where s.status =?1")
+    List<Store> findAll(int status);
 }

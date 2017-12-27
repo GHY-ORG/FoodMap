@@ -7,22 +7,31 @@ import org.springframework.stereotype.Service;
 
 import ghy.foodmap.dao.PicDao;
 import ghy.foodmap.model.Picture;
+import ghy.foodmap.model.Store;
 
 @Service
 public class PicService {
     @Autowired
     PicDao picDao;
     
-    public List<Picture> getAll() {
-        return picDao.findAll();
+    public List<Picture> getAll(Integer status){
+        if(status != null){
+            return picDao.findAll(status);
+        }else{
+            return picDao.findAll();
+        }
     }
     
     public List<Picture> FindByStore(int storeId, int status){
         return picDao.findByStore(storeId, status);
     }
     
-    public Picture FindById(int id, int status){
-        return picDao.findById(id, status);
+    public Picture FindById(int id, Integer status){
+        if(status != null){
+            return picDao.findById(id,status);
+        }else{
+            return picDao.findById(id);
+        }
     }
     
     public List<Picture> FindByPath(String path){

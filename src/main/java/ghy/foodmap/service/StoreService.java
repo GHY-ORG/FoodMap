@@ -14,8 +14,12 @@ public class StoreService {
     @Autowired
     StoreDao storesDao;
     
-    public List<Store> getAll(){
-        return storesDao.findAll();
+    public List<Store> getAll(Integer status){
+        if(status != null){
+            return storesDao.findAll(status);
+        }else{
+            return storesDao.findAll();
+        }
     }
     
     public Store FindById(Integer id,Integer status){
@@ -24,8 +28,6 @@ public class StoreService {
         }else{
             return storesDao.findById(id);
         }
-        
-        
     }
     
     public void delete(int id){

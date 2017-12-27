@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import ghy.foodmap.model.District;
+import ghy.foodmap.model.Store;
 
 @Repository
 public interface DistrictDao extends JpaRepository<District, Serializable> {
@@ -17,4 +18,8 @@ public interface DistrictDao extends JpaRepository<District, Serializable> {
     District findById(int id, int status);
     District findByName(String Name);
     List<District> findByStatus(int status);
+    
+    List<District> findAll();
+    @Query("select d from District d where d.status =?1")
+    List<District> findAll(int status);
 }

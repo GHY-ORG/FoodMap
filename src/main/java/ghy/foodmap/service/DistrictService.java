@@ -7,14 +7,19 @@ import org.springframework.stereotype.Service;
 
 import ghy.foodmap.dao.DistrictDao;
 import ghy.foodmap.model.District;
+import ghy.foodmap.model.Store;
 
 @Service
 public class DistrictService {
     @Autowired
     DistrictDao districtDao;
     
-    public List<District> getAll() {
-        return districtDao.findAll();
+    public List<District> getAll(Integer status){
+        if(status != null){
+            return districtDao.findAll(status);
+        }else{
+            return districtDao.findAll();
+        }
     }
     
     public void delete(int id){

@@ -66,7 +66,8 @@ table td {
 <script type="text/javascript">
 $(function () {
 	var store = {
-	        "name": "初客牛排",
+	        "id":2,
+			"name": "初客牛排0",
 	        "district": 1,
 	        "type": 2,
 	        "per_floor": 30,
@@ -76,11 +77,16 @@ $(function () {
 	        "intro": null,
 	        "status":1
 	}
+	console.log(store);
 	$.ajax({
-	      type:"PUT",
-	      url:"stores/2",
-	      data:store,
-	      dataType:"json",
+		headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },  
+		type:"PUT",
+	      url:"stores",
+	      data:JSON.stringify(store),
+	      dataType:"json;",
 	      success:function(result) {
 	          console.log(result);
 	      },

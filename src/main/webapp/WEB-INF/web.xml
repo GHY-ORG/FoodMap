@@ -38,4 +38,13 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <!-- CORS Filter -->
+	<filter>
+	    <filter-name>CORSFilter</filter-name>
+	    <filter-class>ghy.foodmap.tool.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>CORSFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

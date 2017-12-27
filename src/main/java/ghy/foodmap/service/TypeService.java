@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ghy.foodmap.dao.TypeDao;
+import ghy.foodmap.model.Store;
 import ghy.foodmap.model.Type;
 
 @Service
@@ -13,8 +14,12 @@ public class TypeService {
     @Autowired
     TypeDao typeDao;
     
-    public List<Type> getAll() {
-        return typeDao.findAll();
+    public List<Type> getAll(Integer status){
+        if(status != null){
+            return typeDao.findAll(status);
+        }else{
+            return typeDao.findAll();
+        }
     }
     
     public void delete(int id){

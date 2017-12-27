@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +30,7 @@ public class StoreController {
     public Map<String, Object> index()throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         List<Store> stores = new ArrayList<Store>();
-        stores  = service.getAll();
+        stores  = service.getAll(null);
         if(stores!= null){
             mp.put("stores",stores);
         }else{
@@ -57,7 +58,7 @@ public class StoreController {
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
     public Map<String, Object> delete(@PathVariable int id)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
-        Store store = service.FindById(id, 1);
+        Store store = service.FindById(id, null);
         if(store == null){
             throw new Exception("Store with id "+id+" not found");
         }
@@ -68,10 +69,10 @@ public class StoreController {
     
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> update(@ModelAttribute  Store store)throws Exception{
+    public Map<String, Object> update(@RequestBody  Store store)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         int id = store.getId();
-        Store current = service.FindById(id, 1);
+        Store current = service.FindById(id, null);
         if(current == null){
             throw new Exception("Store with id "+id+" not found");
         }
@@ -83,7 +84,7 @@ public class StoreController {
     
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
-    public Map<String, Object> add(@ModelAttribute  Store store)throws Exception{
+    public Map<String, Object> add(@RequestBody  Store store)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
         service.add(store);
         mp.put("stores",store);

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ghy.foodmap.model.District;
@@ -45,7 +46,7 @@ public class IndexController {
         return "index.html";
     }
     
-    @RequestMapping("/district/{status}")
+    @RequestMapping(value="/district/{status}",method = RequestMethod.GET)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
     public Map<String, Object> district(@PathVariable int status)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
@@ -60,7 +61,7 @@ public class IndexController {
         return mp;
     }
     
-    @RequestMapping("/type/{status}")
+    @RequestMapping(value="/type/{status}",method = RequestMethod.GET)
     @ResponseBody//表示返回的是个json对象会经过配置文件转换
     public Map<String, Object> type(@PathVariable int status)throws Exception{
         Map<String, Object> mp = new HashMap<String, Object>();
@@ -108,7 +109,10 @@ public class IndexController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        String imgBase64Data = "data:image/jpg;base64,"+Base64Utils.encodeToString(byData);
+        String imgBase64Data = null;
+        if (byData != null){
+            imgBase64Data = "data:image/jpg;base64,"+Base64Utils.encodeToString(byData);
+        }
         return imgBase64Data;
     } 
     
